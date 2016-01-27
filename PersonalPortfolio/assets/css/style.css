@@ -59,6 +59,10 @@ button{
     position: relative;
     top: -11px;
 }
+.img-responsive-carfinder{  
+    position: relative;
+    margin-bottom: 25px;
+}
 .carousel-inner .item.active{
     height:100px;
     vertical-align: middle !important;
