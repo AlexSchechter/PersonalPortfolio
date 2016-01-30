@@ -16,7 +16,7 @@ $(function(){
 		$("#largest").text("The largest number is: " + largestNumber);
 		$("#mean").text("The mean of the numbers is: " + myMean);
 		$("#sum").text("The sum of the numbers is: " + mySum);
-		$("#product").text("The product of the numbers is: " + myProduct);			
+		$("#product").text("The product of the numbers is: " + myProduct);
 	});
 
 	$("#fiveNumbersReset").click(function() {

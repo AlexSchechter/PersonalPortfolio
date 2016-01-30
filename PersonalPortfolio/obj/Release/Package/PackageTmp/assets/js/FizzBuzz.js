@@ -11,11 +11,12 @@ $(function(){
 		
 		if (firstNumber < 1 || secondNumber < 1 || firstNumber > 100 || secondNumber > 100 || firstNumber % 1 || secondNumber % 1 )
 		{	
-			alert("Both numbers have to be integers between 1 and 100, please input again")
-			myReset();
+		    myReset();
+		    $("#alertUser").text("Both numbers have to be integers between 1 and 100, please input again");
 			return;
 		};
 		
+		$("#alertUser").text("");
 		$(myHighlight).addClass('tableStyleFB');
 	
 		for (i = 1; i <= 100; i++) {			
@@ -51,5 +52,6 @@ $(function(){
 	$("#firstFBInput, #secondFBInput").val(''); 
 	$("#outputTable").empty();
 	$('table').removeClass();
+	$("#alertUser").text("");
 	} 
 });

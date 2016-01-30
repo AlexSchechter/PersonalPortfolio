@@ -2,12 +2,13 @@
 
     $("#primeFactorsSubmit").click(function () {
         var  myNumber = +$("#primeFactorsInput").val();
-        if ( myNumber < 2 || myNumber%1 ) {
-            alert("The number has to be an integer greater or equal to 2, please input again")
-            myReset();
+        if ( isNaN(myNumber) || myNumber < 2 || myNumber%1 ) {
+            //alert("The number has to be an integer greater or equal to 2, please input again")
+            $("#primeFactorsResult").text("The number has to be an integer greater or equal to 2, please input again").removeClass().addClass("wrongInput");
+            $("#primeFactorsInput").val("");
             return;
         }
-        $("#primeFactorsResult").text("The prime factors are: " + primeFactors(myNumber));
+        $("#primeFactorsResult").text("The prime factors are: " + primeFactors(myNumber)).removeClass().addClass("displayOutput");
     });
 
     $("#primeFactorsReset").click(function () {

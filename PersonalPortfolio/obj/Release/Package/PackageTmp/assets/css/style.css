@@ -10,7 +10,15 @@
 }
 #firstInput, #secondInput, #thirdInput, #fourthInput, #fifthInput, #factorialInput, #firstFBInput, #secondFBInput{
 	width:50px;	
-    text-align:right;
+    text-align:center;
+}
+.wrongInput{
+   color:#ba4e4e;
+   font-weight:bold;
+}
+.displayOutput{
+    color:#63a4b5;
+    font-weight:bold;
 }
 #wordInput{
     width:100px;
@@ -50,6 +58,10 @@ button{
 .img-responsive-palindrome{  
     position: relative;
     top: -11px;
+}
+.img-responsive-carfinder{  
+    position: relative;
+    margin-bottom: 25px;
 }
 .carousel-inner .item.active{
     height:100px;

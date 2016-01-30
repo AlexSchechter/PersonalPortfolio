@@ -2,12 +2,12 @@ $(function(){
 
 	$("#factorialSubmit").click(function() {
 		var factorial = +$("#factorialInput").val();
-		if (factorial < 0 || factorial % 1) {
-			alert("The number has to be non-negative and an integer, please input again")
-			myReset();
+		if (isNaN(factorial) || factorial < 0 || factorial % 1) {
+		    $("#factorialResult").text("The number has to be non-negative and an integer, please input again").removeClass().addClass("wrongInput");
+		    $("#factorialInput").val("");
 			return;
 		}
-		$("#factorialResult").text("The factorial of the number is: " + calculateFactorial(factorial));		
+		$("#factorialResult").text("The factorial of the number is: " + calculateFactorial(factorial)).removeClass().addClass("displayOutput");
 	});
 	
 	$("#factorialReset").click(function() {

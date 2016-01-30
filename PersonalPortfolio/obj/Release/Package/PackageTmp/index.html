@@ -595,6 +595,15 @@
         Start grid postfolio section
         ===================================-->
                           <ul id='portfolio-grid' class="list-unstyled grid-portfolio">
+                              <li class="mix angularJS">
+                                  <div class="item-portfolio">
+                                      <a href="http://carfinderapp.azurewebsites.net/" class="preview-portfolio imgWrapper popup-iframe">
+                                          <div class="mask"><div class="icn-center"><i class="fa fa-vimeo-square "></i></div></div>
+                                          <img src="assets/images/bugatti.jpg" alt="bugatti.jpg" class="img-responsive-carfinder" />
+                                      </a>
+                                      <div class="desc-portfolio"><h5>Car Finder App<small><a href="http://carfinderapp.azurewebsites.net/" target="_blank">Click here for full Website</a></small></h5></div>
+                                  </div>
+                              </li>
                               <li class="mix javascript">
                                   <div class="item-portfolio">
                                       <a href="" data-toggle="modal" data-target="#primefactors" class="preview-portfolio imgWrapper">
@@ -602,7 +611,6 @@
                                           <img src="assets/images/factorization.png" alt="factorization.png" class="img-responsive" />
                                       </a>
                                       <div class="desc-portfolio"><h5>Prime Factors <small>a Javascript Exercise</small></h5></div>
-
                                       <div class="modal fade" id="primefactors" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
                                           <div class="modal-dialog modal-lg">
                                               <div class="modal-content">
@@ -629,12 +637,13 @@
 $(function () {
     $("#primeFactorsSubmit").click(function () {
         var  myNumber = +$("#primeFactorsInput").val();
-        if ( myNumber < 2 || myNumber%1 ) {
-            alert("The number has to be an integer greater or equal to 2, please input again")
-            myReset();
+        if ( isNaN(myNumber) || myNumber < 2 || myNumber%1 ) {
+            //alert("The number has to be an integer greater or equal to 2, please input again")
+            $("#primeFactorsResult").text("The number has to be an integer greater or equal to 2, please input again").removeClass().addClass("wrongInput");
+            $("#primeFactorsInput").val("");
             return;
         }
-        $("#primeFactorsResult").text("The prime factors are: " + primeFactors(myNumber));
+        $("#primeFactorsResult").text("The prime factors are: " + primeFactors(myNumber)).removeClass().addClass("displayOutput");
     });
     $("#primeFactorsReset").click(function () {
         myReset();
@@ -689,7 +698,6 @@ function myReset() {
                                               <div class="modal-content">
                                                   <div class="modal-header">
                                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                                                      <!--<h1 class="modal-title" id="myModalLabel">Five Numbers</h1>-->
                                                   </div>
                                                   <div class="modal-body col-md-12">
                                                       <div class="col-md-5 margin-small h4">
@@ -703,7 +711,7 @@ function myReset() {
                                                           <button id="longestWordSubmit">Submit</button>
                                                           <br />
                                                           <br />
-                                                          <p id="longestWordOutput"></p>
+                                                          <p id="longestWordOutput" class="displayOutput"></p>
                                                       </div>
                                                       <div class="col-md-7 margin-small">
                                                           <pre class="brush: js text">
@@ -759,7 +767,6 @@ $(function(){
                                               <div class="modal-content">
                                                   <div class="modal-header">
                                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                                                      <!--<h1 class="modal-title" id="myModalLabel">Five Numbers</h1>-->
                                                   </div>
                                                   <div class="modal-body col-md-12">
                                                       <div class="col-md-5 margin-small h4">
@@ -775,16 +782,18 @@ $(function(){
                                                           <button id="fiveNumbersSubmit">Calculate</button> &nbsp <button id="fiveNumbersReset">Reset</button>
                                                           <br />
                                                           <br />
-                                                          <p id="smallest"></p>
-                                                          <p id="largest"></p>
-                                                          <p id="mean"></p>
-                                                          <p id="sum"></p>
-                                                          <p id="product"></p>            
+                                                          <div class="displayOutput">
+                                                              <p id="smallest"></p>
+                                                              <p id="largest"></p>
+                                                              <p id="mean"></p>
+                                                              <p id="sum"></p>
+                                                              <p id="product"></p>
+                                                          </div>          
                                                       </div>
                                                       <div class="col-md-7 margin-small">
                                                           <pre class="brush: js text">
 $(function(){
-	$("#submit").click(function() {
+	$("#fiveNumbersSubmit").click(function() {
 		var firstNumber = +$("#firstInput").val();
 		var secondNumber = +$("#secondInput").val();
 		var thirdNumber = +$("#thirdInput").val();
@@ -800,9 +809,9 @@ $(function(){
 		$("#largest").text("The largest number is: " + largestNumber);
 		$("#mean").text("The mean of the numbers is: " + myMean);
 		$("#sum").text("The sum of the numbers is: " + mySum);
-		$("#product").text("The product of the numbers is: " + myProduct);			
+		$("#product").text("The product of the numbers is: " + myProduct);
 	});
-	$("#reset").click(function() {
+	$("#fiveNumbersReset").click(function() {
 		$("#firstInput").val(0);
 		$("#secondInput").val(0);
 		$("#thirdInput").val(0);
@@ -850,7 +859,7 @@ $(function(){
                                                           <br />
                                                           <p>This programme calculates the factorial of an integer. The reset button resets all the values.</p>
                                                           <br />
-                                                          <p>Please input an integer: <input type="number" placeholder=0 id="factorialInput" /></p>
+                                                          <p>Please input an integer: <input type="text" pattern="[0-9]" placeholder=0 id="factorialInput" /></p>
                                                           <button id="factorialSubmit">Submit</button> &nbsp <button id="factorialReset">Reset</button>
                                                           <br />
                                                           <br />
@@ -861,12 +870,12 @@ $(function(){
 $(function(){
 	$("#factorialSubmit").click(function() {
 		var factorial = +$("#factorialInput").val();
-		if (factorial < 0 || factorial % 1) {
-			alert("The number has to be non-negative and an integer, please input again")
-			myReset();
+		if (isNaN(factorial) || factorial < 0 || factorial % 1) {
+		    $("#factorialResult").text("The number has to be non-negative and an integer, please input again").removeClass().addClass("wrongInput");
+		    $("#factorialInput").val("");
 			return;
 		}
-		$("#factorialResult").text("The factorial of the number is: " + calculateFactorial(factorial));		
+		$("#factorialResult").text("The factorial of the number is: " + calculateFactorial(factorial)).removeClass().addClass("displayOutput");
 	});
 	
 	$("#factorialReset").click(function() {
@@ -934,12 +943,14 @@ function myReset() {
                                                                   <input type="submit" value="Fizz & Buzz" id="launch" />
                                                                   <input type="submit" value="Reset Values" id="resetting" />
                                                               </p>
+                                                              <div id="alertUser" class="wrongInput"></div>
                                                               <div id="myHighlight" class="col-md-12">
                                                                   <table>
                                                                       <tbody id="outputTable"></tbody>
                                                                   </table>
                                                               </div>
                                                           </div>
+                                                          
                                                           <div class="col-md-7 margin-small">
                                                               <pre class="brush: js text">
 $(function(){
@@ -955,11 +966,12 @@ $(function(){
 		
 		if (firstNumber < 1 || secondNumber < 1 || firstNumber > 100 || secondNumber > 100 || firstNumber % 1 || secondNumber % 1 )
 		{	
-			alert("Both numbers have to be integers between 1 and 100, please input again")
-			myReset();
+		    myReset();
+		    $("#alertUser").text("Both numbers have to be integers between 1 and 100, please input again");
 			return;
 		};
 		
+		$("#alertUser").text("");
 		$(myHighlight).addClass('tableStyleFB');
 	
 		for (i = 1; i <= 100; i++) {			
@@ -995,6 +1007,7 @@ $(function(){
 	$("#firstFBInput, #secondFBInput").val(''); 
 	$("#outputTable").empty();
 	$('table').removeClass();
+	$("#alertUser").text("");
 	} 
 });
                                                           </pre>
@@ -1035,7 +1048,7 @@ $(function(){
                                                               <input type="submit" value="Reset" id="resetPalindrome" />
                                                           </p>
                                                           <br />
-                                                          <p id="wordOutput"></p>
+                                                          <p id="wordOutput" class="displayOutput"></p>
                                                       </div>
                                                       <div class="col-md-7 margin-small">
                                                           <pre class="brush: js text">
@@ -1101,15 +1114,7 @@ $(function(){
                                       <div class="desc-portfolio"><h5>PERSONAL  PROJECT <small>a Web Design</small></h5></div>
                                   </div>
                               </li>
-                              <li class="mix angularJS">
-                                  <div class="item-portfolio">
-                                      <a href="https://vimeo.com/45830194" class="preview-portfolio imgWrapper popup-iframe">
-                                          <div class="mask"><div class="icn-center"><i class="fa fa-vimeo-square "></i></div></div>
-                                          <img src="assets/images/fizzBuzz.jpg" alt="" class="img-responsive" />
-                                      </a>
-                                      <div class="desc-portfolio"><h5>PERSONAL  PROJECT <small>a Web Design</small></h5></div>
-                                  </div>
-                              </li>
+                             
                               <!--<li class="mix websiteapp">
                                   <div class="item-portfolio">
                                       <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="preview-portfolio imgWrapper popup-iframe">
@@ -1382,7 +1387,9 @@ $(function(){
     Javascript load 
     ===================================-->
 
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <!--<script src="https://code.jquery.com/jquery.js"></script>-->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
     <!-- jQuery animation page loader -->
     <script src='assets/js/pace.min.js'></script>
@@ -1400,11 +1407,13 @@ $(function(){
     <!-- Configuration app js -->
     <script src="assets/js/app.js"></script>
     <!--Portfolio Javascript-->
+ 
     <script src="assets/js/LongestWord.js"></script>
     <script src="assets/js/FiveNumbers.js"></script>
     <script src="assets/js/Factorial.js"></script>
     <script src="assets/js/FizzBuzz.js"></script>
     <script src="assets/js/Palindrome.js"></script>
     <script src="assets/js/PrimeFactors.js"></script>
+
   </body>
 </html>

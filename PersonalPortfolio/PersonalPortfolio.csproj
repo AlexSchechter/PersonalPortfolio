@@ -97,6 +97,7 @@
     <Content Include="assets\css\shCore.css" />
     <Content Include="assets\css\shThemeDefault.css" />
     <Content Include="assets\images\ASicon.png" />
+    <Content Include="assets\images\bugatti.jpg" />
     <Content Include="assets\images\factorial.png" />
     <Content Include="assets\images\factorization.png" />
     <Content Include="assets\images\fiveNumbers.png" />
@@ -123,6 +124,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Five Numbers.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
